@@ -43,6 +43,7 @@ func (engine *Engine) ServeHTTP(rw http.ResponseWriter, r *http.Request) {
 	if handler, ok := engine.router[key]; ok {
 		handler(rw, r)
 	} else {
+		rw.WriteHeader(http.StatusNotFound)
 		fmt.Fprintf(rw, "404 Not Found: %s\n", r.URL)
 	}
 }
