@@ -1,3 +1,3 @@
-module github.com/RunThem/Gee
+module github.com/RunThem/gee
 
 go 1.14
