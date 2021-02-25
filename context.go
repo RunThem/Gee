@@ -52,7 +52,7 @@ func (c *Context) String(code int, format string, value ...interface{}) {
 }
 
 func (c *Context) JSON(code int, obj interface{}) {
-	c.SetHeader("Conten-Type", "application/json")
+	c.SetHeader("Content-Type", "application/json")
 	c.Status(code)
 	encoder := json.NewEncoder(c.Writer)
 	if err := encoder.Encode(obj); err != nil {
