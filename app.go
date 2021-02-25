@@ -36,6 +36,7 @@ func (engine *Engine) Run(addr string) error {
 	return http.ListenAndServe(addr, engine)
 }
 
+// ServeHTTP is implementation of interface
 func (engine *Engine) ServeHTTP(rw http.ResponseWriter, r *http.Request) {
 	context := newContext(rw, r)
 	engine.router.handle(context)

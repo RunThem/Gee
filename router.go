@@ -17,6 +17,7 @@ import (
 	"net/http"
 )
 
+// The router is a route implemented by Map and supports only static routes
 type router struct {
 	handler map[string]HandlerFunc
 }
@@ -25,12 +26,14 @@ func newRouter() *router {
 	return &router{handler: make(map[string]HandlerFunc)}
 }
 
+// Add routing rules
 func (r *router) addRoute(method string, pattern string, handler HandlerFunc) {
 	log.Printf("Route %4s - %s", method, pattern)
 	key := method + "-" + pattern
 	r.handler[key] = handler
 }
 
+// Provide HandlerFunc or 404 Not Found for the accessed path
 func (r *router) handle(c *Context) {
 	key := c.Method + "-" + c.Path
 	if handler, ok := r.handler[key]; ok {
